@@ -1,0 +1,11 @@
+Unofficial minor of vim
+
+For more detail, using this git command may help you to find the recent versions of vim
+
+    git branch -a
+
+Once you find your proper branch, check out this branch and start developing it
+    
+    git checkout <branch name>
+
+Happy developing!
