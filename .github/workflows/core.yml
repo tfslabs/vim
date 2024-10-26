@@ -1,0 +1,37 @@
+name: vim core forking for GitHub Actions
+
+on:
+  push:
+    branches:
+      - no-available-just-rename-in-case-you-want
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  download-and-commit:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Obtain source code from ftp.gnu.org
+        run: |
+          wget http://ftp.vim.org/pub/vim/unix/vim-9.0.tar.bz2 -O vim-9.0.tar.bz2
+
+      - name: Install Zstandard for Extraction
+        run: sudo apt install -y xz-utils tar
+
+      - name: Extract Source Code into Root Directory
+        run: tar --strip-components=1 -xf vim-9.0.tar.bz2
+
+      - name: Commit Changes
+        run: |
+          git config --local user.name "github-actions[bot]"
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          rm vim-9.0.tar.bz2
+          git add .
+          git commit -m "vim core forking for GitHub Actions, version 9.0"
+          git push
