@@ -32,6 +32,9 @@ jobs:
           git config --local user.name "github-actions[bot]"
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
           rm vim-9.0.tar.bz2
+          rm .github/workflows/ci.yml
+          rm .github/workflows/codeql-analysis.yml
+          rm .github/workflows/coverity.yml
           git add .
           git commit -m "vim core forking for GitHub Actions, version 9.0"
           git push
